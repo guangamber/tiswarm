@@ -3,6 +3,7 @@ import copy
 import json
 from collections import defaultdict
 from typing import List, Callable, Union
+import os
 
 # Package/library imports
 from openai import OpenAI
@@ -26,8 +27,11 @@ __CTX_VARS_NAME__ = "context_variables"
 class Swarm:
     def __init__(self, client=None):
         if not client:
-            client = OpenAI()
-        self.client = client
+            base_url = os.environ['OPENAI_ENDPOINT']
+            if base_url is not None and not base_url.startswith("https://api.openai.com"):
+                client = OpenAI(base_url=base_url, api_key="ollama")
+            else:
+                client = OpenAI()
 
     def get_chat_completion(
         self,

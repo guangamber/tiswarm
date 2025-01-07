@@ -4,6 +4,7 @@ from openai.types.chat.chat_completion_message_tool_call import (
     Function,
 )
 from typing import List, Callable, Union, Optional
+import os
 
 # Third-party imports
 from pydantic import BaseModel
@@ -13,7 +14,7 @@ AgentFunction = Callable[[], Union[str, "Agent", dict]]
 
 class Agent(BaseModel):
     name: str = "Agent"
-    model: str = "gpt-4o"
+    model: str = os.environ['SWARM_DEFAULT_MODEL']
     instructions: Union[str, Callable[[], str]] = "You are a helpful agent."
     functions: List[AgentFunction] = []
     tool_choice: str = None

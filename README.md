@@ -357,3 +357,9 @@ run_demo_loop(agent, stream=True)
 - Charu Jaiswal - [charuj](https://github.com/charuj)
 - Colin Jarvis - [colin-openai](https://github.com/colin-openai)
 - Katia Gil Guzman - [katia-openai](https://github.com/katia-openai)
+
+
+# To use locally deployed Ollama, set the following os env:
+# Example
+OPENAI_ENDPOINT=http://ollamahost:11434/v1
+SWARM_DEFAULT_MODEL=llama3.2:latest
